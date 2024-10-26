@@ -5,11 +5,6 @@ const browser = await puppeteer.connect({
     browserURL: "http://127.0.0.1:9222",
 });
 
-let friendsPage = process.argv[2];
-if (!friendsPage) {
-    throw new Error(`No Steam profile in parameters, please see README.md`);
-}
-
 let links = [];
 try {
     links = JSON.parse(fs.readFileSync("links.json"));
@@ -24,6 +19,11 @@ const parentLog = (...elements) => {
 page.exposeFunction("parentLog", parentLog);
 
 if (!links.length) {
+    const friendsPage = process.argv[2];
+    if (!friendsPage) {
+        throw new Error(`No Steam profile in parameters, please see README.md`);
+    }
+
     console.log(`We are looking the the friends of ${friendsPage}`);
     await page.goto(friendsPage);
 
