@@ -32,6 +32,8 @@ if (!links.length) {
     );
 
     fs.writeFileSync("links.json", JSON.stringify(links));
+} else {
+    console.log("we got a links.json file, we continue the last treatment");
 }
 
 let index = 1;
@@ -72,3 +74,4 @@ while (links.length > 0) {
 }
 
 console.log(`we are done.`);
+fs.unlink("./links.json");
