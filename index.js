@@ -74,4 +74,4 @@ while (links.length > 0) {
 }
 
 console.log(`we are done.`);
-fs.unlink("./links.json");
+fs.unlinkSync("links.json");
