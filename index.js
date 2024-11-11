@@ -75,3 +75,5 @@ while (links.length > 0) {
 
 console.log(`we are done.`);
 fs.unlinkSync("links.json");
+
+process.exit();
