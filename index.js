@@ -13,6 +13,17 @@ try {
 }
 
 const page = await browser.newPage();
+
+// add script to block images and load pages faster
+await page.setRequestInterception(true);
+page.on("request", (request) => {
+    if (request.resourceType() === "image") {
+        request.abort();
+    } else {
+        request.continue();
+    }
+});
+
 const parentLog = (...elements) => {
     elements.forEach((elt) => console.log(elt));
 };
